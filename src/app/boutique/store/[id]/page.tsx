@@ -2,26 +2,19 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { Product, Settings as StoreSettings } from "@/types";
 
 interface StoreData {
   name: string;
   logo?: string;
   mainColor?: string;
-  products: Array<{
-    id: string;
-    name: string;
-    price: number;
-    image?: string;
-  }>;
+  products: Product[];
 }
 
 interface StoreSetting {
   key: string;
   value: string;
 }
-
-interface StoreSettings { [key: string]: string; }
-interface Product { id: string; name: string; price: number; image?: string; }
 
 export default function StoreFrontPage() {
   const params = useParams();
@@ -46,8 +39,8 @@ export default function StoreFrontPage() {
       // تحميل القالب المختار ديناميكيًا
       const templateId = settingsObj.template || "aura";
       import(`@/templates/${templateId}`)
-        .then((mod) => setTemplateComponent(() => mod.default))
-        .catch(() => import("@/templates/aura").then((mod) => setTemplateComponent(() => mod.default)));
+        .then((mod) => setTemplateComponent(mod.default))
+        .catch(() => import("@/templates/aura").then((mod) => setTemplateComponent(mod.default)));
       setLoading(false);
     }
     fetchAll();
@@ -63,7 +56,10 @@ export default function StoreFrontPage() {
         storeName: store.name || "",
         logoUrl: store.logo || "",
         mainColor: store.mainColor || ""
-      }} products={store.products} />
+      }} products={store.products.map((p) => ({
+        ...p,
+        image: p.image ?? ""
+      }))} />
     </div>
   );
 }

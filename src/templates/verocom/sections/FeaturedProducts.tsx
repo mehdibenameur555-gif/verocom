@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Product } from "../../../types";
+import { Product } from "@/types";
 import React from "react";
 
 export default function FeaturedProducts({ products }: { products: Product[] }) {

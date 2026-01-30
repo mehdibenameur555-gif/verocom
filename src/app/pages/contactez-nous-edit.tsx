@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
+// ...existing code...
 import 'bootstrap/dist/css/bootstrap.css';
 import $ from 'jquery';
 // const  = dynamic(() => import('react-'), { ssr: false });
@@ -11,15 +11,15 @@ export default function EditContactezNous() {
   const [name, setName] = useState("Contactez nous");
   const [slug, setSlug] = useState("contactez-nous");
   const [model, setModel] = useState("default");
-  const [lang, setLang] = useState('fr');
+  // تم حذف متغير lang لأنه غير مستعمل فعليًا
   const router = useRouter();
   useEffect(() => {
     if (typeof window !== 'undefined') {
         (window as unknown as { $: typeof $; jQuery: typeof $ }).$ = $;
         (window as unknown as { $: typeof $; jQuery: typeof $ }).jQuery = $;
       import('bootstrap');
-      const storedLang = localStorage.getItem('lang');
-      if (storedLang) setLang(storedLang);
+      // const storedLang = localStorage.getItem('lang');
+      // if (storedLang) setLang(storedLang);
     }
   }, []);
 

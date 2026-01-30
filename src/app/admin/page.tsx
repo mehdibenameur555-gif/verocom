@@ -214,7 +214,7 @@ export default function AdminDashboardPage() {
           <div>
             <p className="text-sm font-semibold text-slate-500">Paramètres admin</p>
             <h2 className="text-xl font-bold text-slate-900">Images du tableau de bord</h2>
-            <p className="text-sm text-slate-500">Seul l'admin peut définir les visuels affichés en haut du tableau de bord.</p>
+            <p className="text-sm text-slate-500">Seul l&apos;admin peut définir les visuels affichés en haut du tableau de bord.</p>
           </div>
         </div>
 
@@ -227,10 +227,13 @@ export default function AdminDashboardPage() {
                   {adminImages.slots[idx]?.startsWith("data:video") ? (
                     <video src={adminImages.slots[idx] || ""} controls className="w-full h-full rounded-lg object-cover" />
                   ) : (
-                    <img
+                    <Image
                       src={adminImages.slots[idx] || ""}
                       alt={`${label} preview`}
+                      width={400}
+                      height={160}
                       className="w-full h-40 object-cover rounded-lg"
+                      unoptimized
                     />
                   )}
                 </div>
@@ -267,7 +270,7 @@ export default function AdminDashboardPage() {
                   onClick={() => adminImages.confirmSlot(idx)}
                   disabled={!adminImages.slots[idx]}
                 >
-                  Valider l'image
+                  Valider l&apos;image
                 </button>
                 {adminImages.slots[idx] && (
                   <span className={`text-xs font-semibold ${
@@ -478,10 +481,12 @@ export default function AdminDashboardPage() {
             <ul className="divide-y divide-slate-200">
               {masterData.map((record) => (
                 <li key={record.id} className="flex items-start gap-3 px-4 py-4">
-                  <img
+                  <Image
                     alt={`${record.label} logo`}
                     className="h-12 w-12 rounded-lg border border-slate-200 object-cover"
                     src={record.logo}
+                    width={48}
+                    height={48}
                   />
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
@@ -505,8 +510,10 @@ export default function AdminDashboardPage() {
                       </span>
                     </div>
                     <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
-                      <button className="rounded-full border border-slate-200 px-3 py-1 text-slate-700 transition hover:border-[#1e40af] hover:text-[#1e40af]">
-                          onClick={() => setRecordToEdit({ ...record })}
+                      <button
+                        className="rounded-full border border-slate-200 px-3 py-1 text-slate-700 transition hover:border-[#1e40af] hover:text-[#1e40af]"
+                        onClick={() => setRecordToEdit({ ...record })}
+                      >
                         Edit
                       </button>
                       <button

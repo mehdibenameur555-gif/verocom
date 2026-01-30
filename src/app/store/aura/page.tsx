@@ -1,9 +1,7 @@
 "use client";
 import AuraTemplate from "@/templates/aura";
 import { useEffect, useState } from "react";
-
-interface StoreSettings { [key: string]: string }
-interface Product { id: string; name: string; price: number; image?: string }
+import type { Product, Settings as StoreSettings } from "@/types";
 
 export default function AuraStorePage() {
   const [settings, setSettings] = useState<StoreSettings>({});
@@ -22,7 +20,7 @@ export default function AuraStorePage() {
           mainColor: data.mainColor,
           ...data.settings,
         });
-        setProducts(data.products);
+        setProducts(data.products.map((p: Product) => ({ ...p, image: p.image ?? "" })));
       }
       setLoading(false);
     }

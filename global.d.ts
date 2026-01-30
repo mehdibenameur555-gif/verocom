@@ -4,7 +4,7 @@ declare module 'jquery';
 declare module 'bootstrap';
 // Allow window.$ and window.jQuery
 interface Window {
-	$: any;
-	jQuery: any;
+	$: unknown;
+	jQuery: unknown;
 }
 declare module 'bootstrap';

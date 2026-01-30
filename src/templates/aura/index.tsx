@@ -1,4 +1,4 @@
-import { Product, Settings } from "../../types";
+import { Product, Settings } from "@/types";
 import React from "react";
 import Header from "./Header";
 import ProductList from "./ProductList";

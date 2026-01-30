@@ -1,4 +1,4 @@
-import { CartItem } from "../../types";
+import { CartItem } from "@/types";
 import React from "react";
 
 export default function Cart({ items, total }: { items: CartItem[]; total: number }) {
