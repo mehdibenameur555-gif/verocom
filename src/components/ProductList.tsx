@@ -46,10 +46,12 @@ export default function ProductList() {
 						<p className="text-sm text-gray-500">{p.category}</p>
 						<p className="font-bold text-blue-700">${p.price.toFixed(2)}</p>
 						<button
-						<Z1Button onClick={() => add({ id: p.id, name: p.name, price: p.price, image: p.image })}>
+							onClick={() => add({ id: p.id, name: p.name, price: p.price, image: p.image })}
+							className="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded flex items-center gap-2 mt-2"
+						>
 							<Plus className="w-4 h-4" />
 							{t(locale as any, "addToCart")}
-						</Z1Button>
+						</button>
 					</div>
 				</div>
 			))}

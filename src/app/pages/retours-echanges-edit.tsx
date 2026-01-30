@@ -1,11 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-if (typeof window !== 'undefined') {
-  (window as unknown as { $: typeof $; jQuery: typeof $ }).$ = $;
-  (window as unknown as { $: typeof $; jQuery: typeof $ }).jQuery = $;
-  // import('bootstrap');
-}
+
+// تم حذف تهيئة jQuery لأن $ غير معرف في المشروع
 import { useRouter } from "next/navigation";
 
 export default function EditRetoursEchanges() {
@@ -13,13 +9,6 @@ export default function EditRetoursEchanges() {
   const [name, setName] = useState("Retours & échanges");
   const [slug, setSlug] = useState("retours-echanges");
   const [model, setModel] = useState("default");
-  const [lang, setLang] = useState('fr');
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedLang = localStorage.getItem('lang');
-      if (storedLang) setTimeout(() => setLang(storedLang), 0);
-    }
-  }, []);
   const router = useRouter();
 
   useEffect(() => {
