@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import 'react-summernote/dist/react-summernote.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import $ from 'jquery';
-const Summernote = dynamic(() => import('react-summernote'), { ssr: false });
 import { useRouter } from "next/navigation";
 
 export default function EditAideFaq() {
@@ -50,23 +48,10 @@ export default function EditAideFaq() {
       </div>
       <div className="mb-6">
         <label className="block font-semibold mb-2">Corps</label>
-        <Summernote
+        <textarea
+          className="w-full border rounded px-3 py-2"
           value={content}
-          options={{
-            height: 240,
-            dialogsInBody: true,
-            lang: lang,
-            toolbar: [
-              ['style', ['style']],
-              ['font', ['bold', 'italic', 'underline', 'clear']],
-              ['fontname', ['fontname']],
-              ['para', ['ul', 'ol', 'paragraph']],
-              ['table', ['table']],
-              ['insert', ['link', 'picture', 'video']],
-              ['view', ['fullscreen', 'codeview']]
-            ]
-          }}
-          onChange={(val: string) => setContent(val)}
+          onChange={(e) => setContent(e.target.value)}
         />
       </div>
       <div className="flex gap-4 justify-end">
