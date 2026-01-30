@@ -25,7 +25,7 @@ export default function RegisterPage() {
         const data = await res.json();
         setError(data.message || "Erreur lors de l'inscription");
       }
-    } catch (e) {
+    } catch {
       setError("Erreur réseau");
     }
     setLoading(false);

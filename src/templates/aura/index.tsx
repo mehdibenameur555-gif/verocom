@@ -1,3 +1,4 @@
+import { Product, Settings } from "../../types";
 import React from "react";
 import Header from "./Header";
 import ProductList from "./ProductList";
@@ -11,7 +12,7 @@ const fakeTestimonials = [
   { name: "Karim", message: "J'ai adoré mon expérience d'achat." },
 ];
 
-export default function AuraTemplate({ settings, products }: { settings: any; products: any[] }) {
+export default function AuraTemplate({ settings, products }: { settings: Settings; products: Product[] }) {
   // مثال: المنتجات المميزة هي أول 3 منتجات
   const featured = products.slice(0, 3);
   return (

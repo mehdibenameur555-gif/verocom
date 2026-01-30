@@ -1,6 +1,7 @@
+import { CartItem } from "../../types";
 import React from "react";
 
-export default function Cart({ items, total }: { items: any[]; total: number }) {
+export default function Cart({ items, total }: { items: CartItem[]; total: number }) {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">Panier</h1>

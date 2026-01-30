@@ -24,7 +24,7 @@ export default function VerifyPage() {
         const data = await res.json();
         setError(data.message || "Code incorrect ou expiré");
       }
-    } catch (e) {
+    } catch {
       setError("Erreur réseau");
     }
     setLoading(false);
@@ -33,7 +33,7 @@ export default function VerifyPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-full max-w-md space-y-6">
-        <h1 className="text-2xl font-bold text-center text-[#0a355d]">Vérification de l'email</h1>
+        <h1 className="text-2xl font-bold text-center text-[#0a355d]">Vérification de l&apos;email</h1>
         <p className="text-center text-gray-600">Un code a été envoyé à votre adresse e-mail. Veuillez le saisir ci-dessous pour activer votre compte.</p>
         {error && <div className="text-red-600 text-center">{error}</div>}
         {success && <div className="text-green-600 text-center">Votre compte est activé !</div>}

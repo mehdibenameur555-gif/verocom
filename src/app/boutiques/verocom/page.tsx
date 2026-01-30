@@ -1,6 +1,7 @@
 "use client";
 import VerocomTemplate from "@/templates/verocom";
 import { useEffect, useState } from "react";
+import { Product, Settings } from "@/types";
 
 const defaultProducts = [
   {
@@ -27,7 +28,7 @@ const defaultProducts = [
 ];
 
 export default function VerocomStorePage() {
-  const [settings, setSettings] = useState<any>({
+  const [settings, setSettings] = useState<Settings>({
     titre: "",
     logoUrl: "/images/verocom/logo.png",
     mainColor: "#f5f8fa",
@@ -35,7 +36,7 @@ export default function VerocomStorePage() {
     bannerSubtitle: "Votre boutique professionnelle prête en quelques clics.",
     bannerImage: "/images/verocom/banner.jpg",
   });
-  const [products, setProducts] = useState<any[]>(defaultProducts);
+  const [products, setProducts] = useState<Product[]>(defaultProducts);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function VerocomStorePage() {
           const data = await res.json();
           titre = data.titre || data.title || titre;
           setProducts(data.products || defaultProducts);
-          setSettings((prev: any) => ({
+          setSettings((prev) => ({
             ...prev,
             titre,
             logoUrl: data.logo || prev.logoUrl,
@@ -57,12 +58,12 @@ export default function VerocomStorePage() {
           setLoading(false);
           return;
         }
-      } catch (e) {}
+      } catch {}
       // fallback: localStorage أو Verocom
       if (typeof window !== "undefined") {
         titre = window.localStorage.getItem("titre-de-la-boutique") || titre;
       }
-      setSettings((prev: any) => ({
+      setSettings((prev) => ({
         ...prev,
         titre,
         bannerTitle: `Bienvenue sur ${titre} !`,

@@ -1,3 +1,4 @@
+import { Product, Settings } from "@/types";
 import React from "react";
 import Header from "./Header";
 import ProductList from "./ProductList";
@@ -11,7 +12,7 @@ const fakeTestimonials = [
   { name: "Leila", message: "J'ai trouvé tout ce dont j'avais besoin pour ma boutique." },
 ];
 
-export default function VerocomTemplate({ settings, products }: { settings: any; products: any[] }) {
+export default function VerocomTemplate({ settings, products }: { settings: Settings; products: Product[] }) {
   const featured = products.slice(0, 3);
   return (
     <div style={{ background: settings?.mainColor || "#f5f8fa" }} className="min-h-screen flex flex-col" lang="fr">

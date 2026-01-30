@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { ShoppingCart, Search } from "lucide-react";
@@ -9,7 +10,7 @@ export default function Header({ storeName, logoUrl }: { storeName: string; logo
   return (
     <header className="w-full flex flex-col sm:flex-row items-center justify-between px-6 sm:px-16 py-6 bg-white shadow-lg gap-4 sm:gap-0">
       <div className="flex items-center gap-5 w-full sm:w-auto justify-center sm:justify-start">
-        {logoUrl && <img src={logoUrl} alt="Logo" className="h-16 w-16 object-contain" />}
+        {logoUrl && <Image src={logoUrl} alt="Logo" className="h-16 w-16 object-contain" width={64} height={64} />}
         <span className="text-4xl font-extrabold text-[#0a355d]">{storeName}</span>
       </div>
       <nav className="flex flex-col sm:flex-row gap-4 sm:gap-12 w-full sm:w-auto justify-center sm:justify-start items-center">

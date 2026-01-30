@@ -7,7 +7,7 @@ export default function Testimonials({ testimonials }: { testimonials: { name: s
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {testimonials.map((t, idx) => (
           <div key={idx} className="bg-white border rounded-lg p-6 shadow">
-            <p className="mb-2 text-gray-700">"{t.message}"</p>
+            <p className="mb-2 text-gray-700">&quot;{t.message}&quot;</p>
             <div className="text-right text-[#0a355d] font-bold">- {t.name}</div>
           </div>
         ))}

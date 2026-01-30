@@ -87,13 +87,8 @@ export default function ThemeCustomizePage() {
           </form>
         </div>
         {/* إعدادات القسم المختار */}
-        {selectedSection && (
-          <div className="w-full max-w-xl bg-white rounded-lg shadow p-6">
-            <h2 className="text-lg font-semibold mb-4">إعدادات القسم: {selectedSection}</h2>
-            {/* هنا يمكن بناء واجهة ديناميكية حسب نوع القسم المختار */}
-            <div className="text-gray-500">واجهة إعدادات القسم ستظهر هنا...</div>
-          </div>
-        )}
+        {/* إصلاح: selectedSection غير معرف، لذا نزيل الكود مؤقتًا أو نعرفه بقيمة افتراضية */}
+        {/* إذا كنت تريد تفعيل إعدادات قسم معين، عرّف selectedSection في state وأضف منطق الاختيار */}
       </main>
     </div>
   );

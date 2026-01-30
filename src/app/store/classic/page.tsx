@@ -1,9 +1,11 @@
+"use client";
 import ClassicTemplate from "@/templates/classic";
 import { useEffect, useState } from "react";
+import { Product, Settings } from "@/types";
 
 export default function ClassicStorePage() {
-  const [settings, setSettings] = useState<any>({});
-  const [products, setProducts] = useState<any[]>([]);
+  const [settings, setSettings] = useState<Settings>({});
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

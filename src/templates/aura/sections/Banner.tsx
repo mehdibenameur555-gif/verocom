@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Banner({ title, subtitle, image }: { title: string; subtitle?: string; image?: string }) {
@@ -7,7 +8,7 @@ export default function Banner({ title, subtitle, image }: { title: string; subt
         <h2 className="text-3xl font-bold mb-2 text-blue-900">{title}</h2>
         {subtitle && <p className="text-lg text-blue-700 mb-2">{subtitle}</p>}
       </div>
-      {image && <img src={image} alt="Bannière" className="h-32 md:h-40 rounded-lg shadow" />}
+      {image && <Image src={image} alt="Bannière" className="h-32 md:h-40 rounded-lg shadow" width={160} height={160} />}
     </section>
   );
 }
