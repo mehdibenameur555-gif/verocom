@@ -1,0 +1,13 @@
+.input-placeholder-normal::placeholder {
+  font-size: 0.92rem !important;
+  font-weight: 400 !important;
+  color: #bbb !important;
+  opacity: 1 !important;
+}
+
+input::placeholder, textarea::placeholder, select::placeholder {
+  font-size: 0.92rem !important;
+  font-weight: 400 !important;
+  color: #bbb !important;
+  opacity: 1 !important;
+}

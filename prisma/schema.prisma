@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Store {
+  id          String   @id @default(cuid())
+  name        String
+  domain      String?  @unique // custom domain (ex: mystore.com)
+  subdomain   String?  @unique // subdomain (ex: user1.platform.com)
+  description String?
+  logo        String?
+  currency    String   @default("USD")
+  language    String   @default("en")
+  timezone    String   @default("UTC")
+  ownerId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products    Product[]
+  orders      Order[]
+  customers   Customer[]
+  coupons     Coupon[]
+  pages       Page[]
+  settings    StoreSetting[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  storeId     String
+  name        String
+  description String?
+  price       Float
+  comparePrice Float?
+  sku         String?
+  barcode     String?
+  inventory   Int      @default(0)
+  images      String[]
+  category    String?
+  tags        String[]
+  status      String   @default("draft")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  store       Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  orderItems  OrderItem[]
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  storeId   String
+  email     String
+  firstName String?
+  lastName  String?
+  phone     String?
+  address   String?
+  city      String?
+  country   String?
+  postalCode String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  orders    Order[]
+
+  @@unique([storeId, email])
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  storeId         String
+  customerId      String
+  orderNumber     String   @unique
+  status          String   @default("pending")
+  totalAmount     Float
+  subtotal        Float
+  tax             Float    @default(0)
+  shippingCost    Float    @default(0)
+  discountAmount  Float    @default(0)
+  couponCode      String?
+  paymentMethod   String?
+  paymentStatus   String   @default("unpaid")
+  shippingAddress String?
+  billingAddress  String?
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  store           Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  customer        Customer @relation(fields: [customerId], references: [id])
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float
+  total     Float
+  createdAt DateTime @default(now())
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model Coupon {
+  id            String   @id @default(cuid())
+  storeId       String
+  code          String
+  type          String   // percentage or fixed
+  value         Float
+  minPurchase   Float?
+  maxDiscount   Float?
+  usageLimit    Int?
+  usageCount    Int      @default(0)
+  startDate     DateTime?
+  endDate       DateTime?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  store         Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@unique([storeId, code])
+}
+
+model Page {
+  id        String   @id @default(cuid())
+  storeId   String
+  title     String
+  slug      String
+  content   String
+  isPublished Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@unique([storeId, slug])
+}
+
+model StoreSetting {
+  id        String   @id @default(cuid())
+  storeId   String
+  key       String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@unique([storeId, key])
+}

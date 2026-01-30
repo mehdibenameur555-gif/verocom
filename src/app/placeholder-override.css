@@ -1,0 +1,7 @@
+#placeholder-override input::placeholder,
+#placeholder-override textarea::placeholder {
+  color: #000 !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+}
