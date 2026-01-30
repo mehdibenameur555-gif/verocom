@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import 'bootstrap/dist/css/bootstrap.css';
 import $ from 'jquery';
-// const Summernote = dynamic(() => import('react-summernote'), { ssr: false });
+// const  = dynamic(() => import('react-'), { ssr: false });
 import { useRouter } from "next/navigation";
 
 export default function EditContactezNous() {

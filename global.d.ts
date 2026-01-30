@@ -1,4 +1,4 @@
-// TypeScript global types for jQuery, bootstrap, and react-summernote modules
+// TypeScript global types for jQuery و bootstrap فقط
 
 declare module 'jquery';
 declare module 'bootstrap';
