@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  const { id } = await context.params;
   const store = await prisma.store.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: { products: true }
   });
   if (!store) return NextResponse.json({ error: "Store not found" }, { status: 404 });
