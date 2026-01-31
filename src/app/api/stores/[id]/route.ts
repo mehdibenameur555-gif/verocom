@@ -18,11 +18,11 @@ export async function GET(req: NextRequest, context: { params: Promise<{ id: str
     name: store.name,
     logo,
     mainColor,
-    products: store.products.map(p => ({
+    products: store.products.map((p: { id: string; name: string; price: number; images?: string[] }) => ({
       id: p.id,
       name: p.name,
       price: p.price,
-      image: p.images[0] || null
+      image: p.images?.[0] || null
     }))
   });
 }

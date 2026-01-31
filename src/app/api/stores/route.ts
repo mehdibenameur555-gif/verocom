@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/prisma';
 import { nanoid } from 'nanoid';
 
-const prisma = new PrismaClient();
+// prisma instance is now imported from @/lib/prisma
 
 // Helper: generate subdomain from store name or random
 function generateSubdomain(name?: string) {
