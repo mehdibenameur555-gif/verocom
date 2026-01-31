@@ -1,8 +1,17 @@
 "use client";
-import { useState } from "react";
+
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function EditPage() {
+  return (
+    <Suspense fallback={<div>Chargement de la page d'édition...</div>}>
+      <EditPageContent />
+    </Suspense>
+  );
+}
+
+function EditPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pageKey = searchParams.get("key") || "";
