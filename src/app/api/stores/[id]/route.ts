@@ -11,8 +11,8 @@ export async function GET(req: NextRequest, context: { params: Promise<{ id: str
 
   // إعدادات إضافية (شعار، لون...)
   const settings = await prisma.storeSetting.findMany({ where: { storeId: store.id } });
-  const mainColor = settings.find(s => s.key === "mainColor")?.value;
-  const logo = settings.find(s => s.key === "logo")?.value;
+  const mainColor = settings.find((s: { key: string; value: string }) => s.key === "mainColor")?.value;
+  const logo = settings.find((s: { key: string; value: string }) => s.key === "logo")?.value;
 
   return NextResponse.json({
     name: store.name,
